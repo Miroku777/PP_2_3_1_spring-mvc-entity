@@ -1,8 +1,7 @@
-package web.config.service;
+package web.service;
 
 import org.springframework.stereotype.Component;
 import web.model.Car;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,7 +22,6 @@ public class CarServiceImpl implements CarService {
     }
 
     public List<Car> getCar(int id) {
-        List<Car> cars = new ArrayList<>();
         return cars.stream().limit(id).collect(Collectors.toList());
     }
 }
