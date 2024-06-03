@@ -1,6 +1,5 @@
 package web.controller;
 
-import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -28,19 +27,19 @@ public class UsersController {
     @GetMapping()
     public String showAllUsers(Model model) {
         model.addAttribute("users", userService.showAllUsers());
-        return "users/index";
+        return "/index";
     }
 
     @GetMapping("/new")
     public String newUser(@ModelAttribute("user") User user) {
-        return "users/new";
+        return "new";
     }
 
     @PostMapping()
-    public String createNewUser(@ModelAttribute("user") @Valid User user,
+    public String createNewUser(@ModelAttribute("user") User user,
                                 BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "users/new";
+            return "new";
         }
         userService.createNewUser(user);
         return "redirect:/users";
@@ -50,16 +49,16 @@ public class UsersController {
     public String updateUser(@RequestParam("id") long id, Model model) {
         if (userService.getUserById(id).isPresent()) {
             model.addAttribute("user", userService.getUserById(id).get());
-            return "users/update";
+            return "update";
         }
         return "redirect:/users";
     }
 
     @PostMapping("/update")
-    public String updateUserOption(@ModelAttribute("user") @Valid User user,
+    public String updateUserOption(@ModelAttribute("user") User user,
                                    BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "users/update";
+            return "update";
         }
         userService.updateUser(user);
         return "redirect:/users";
@@ -71,3 +70,4 @@ public class UsersController {
         return "redirect:/users";
     }
 }
+
