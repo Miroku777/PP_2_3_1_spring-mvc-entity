@@ -12,7 +12,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
-          <factory-entry name="entityManagerFactory" />
+          <factory-entry name="entityManagerFactory" value="6e349589-c2c9-48e1-933a-c0a73dd26fbe" />
           <factory-entry name="spring-mvc" />
         </datasource-mapping>
         <naming-strategy-map />
